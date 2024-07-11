@@ -30,16 +30,44 @@ TEST(StringCalculatorAddTests, ExpectSumWithNewlineDelimiter) {
     ASSERT_EQ(result, expectedresult);
 }
 
-TEST(StringCalculatorAddTests, IgnoreNumbersGreaterThan1000) {
+TEST(StringCalculatorAddTests, IgnoreNumbersGreaterThan1000_1) {
     int expectedresult = 1;
     const char*  input = "1,1001";
     int result =add(input);
     ASSERT_EQ(result, expectedresult);
-}
+    }
+
+TEST(StringCalculatorAddTests, IgnoreNumbersGreaterThan1000_2) {
+    int expectedresult = 1;
+    const char*  input = "10001,1";
+    int result =add(input);
+    ASSERT_EQ(result, expectedresult);
+    }
+
+TEST(StringCalculatorAddTests, IgnoreNumbersGreaterThan1000_3) {
+    int expectedresult = 0;
+    const char*  input = "10001,1001";
+    int result =add(input);
+    ASSERT_EQ(result, expectedresult);
+    }
 
 TEST(StringCalculatorAddTests, ExpectSumWithCustomDelimiter) {
     int expectedresult = 3;
     const char*  input = "//;\n1;2";
+    int result = add(input);
+    ASSERT_EQ(result, expectedresult);
+}
+
+TEST(StringCalculatorAddTests, ExpectZeroForEmptyString) {
+    int expectedresult = 0;
+    const char*  input = "";
+    int result = add(input);
+    ASSERT_EQ(result, expectedresult);
+}
+
+TEST(StringCalculatorAddTests, ExpectZeroForNull) {
+    int expectedresult = 0;
+    const char*  input = "NULL";
     int result = add(input);
     ASSERT_EQ(result, expectedresult);
 }
